@@ -36,7 +36,7 @@ class CurbService
     response = conn.get('/rps-stage/throw')
     json_body = JSON.parse(response.body) rescue { message: "Failed to parse" }
     log("Response from game server. Status: #{response.status}, body: #{json_body}")
-    if response.status == 200
+    if response.status == 200 && json_body['statusCode'] == 200
       json_body['body']
     end
   rescue Faraday::Error => e
