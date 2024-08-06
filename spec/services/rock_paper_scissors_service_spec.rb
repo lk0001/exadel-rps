@@ -88,16 +88,18 @@ describe RockPaperScissorsService do
       end
     end
 
-    context "when player's choice is invalid" do
+    context 'when choices are not lowercase' do
       context "(uppercase)" do
-        let(:user_choice) { 'ROCK' }
-        let(:curb_choice) { RockPaperScissorsService::ROCK }
+        let(:user_choice) { RockPaperScissorsService::ROCK.upcase }
+        let(:curb_choice) { RockPaperScissorsService::ROCK.upcase }
 
-        it 'returns ERROR' do
-          expect(subject).to eq(described_class::ERROR)
+        it 'does not return ERROR' do
+          expect(subject).to eq(described_class::TIE)
         end
       end
+    end
 
+    context "when player's choice is invalid" do
       context "(other string)" do
         let(:user_choice) { 'cat' }
         let(:curb_choice) { RockPaperScissorsService::ROCK }
