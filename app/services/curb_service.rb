@@ -4,7 +4,6 @@ class CurbService
   PROD_SERVER_URL = 'https://5eddt4q9dk.execute-api.us-east-1.amazonaws.com'.freeze
 
   TIMEOUT = 1.freeze
-  CHOICES = %w(rock paper scissors).freeze
 
   attr_reader :server_url
 
@@ -46,7 +45,7 @@ class CurbService
   end
 
   def retrieve_local_throw
-    CHOICES.sample
+    RockPaperScissorsService::CHOICES.sample
   end
 
   def log(message, level = :info)
