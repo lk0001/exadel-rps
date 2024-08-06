@@ -13,7 +13,7 @@ class RockPaperScissorsService
   # maybe rework RPS to be numbers
 
   def self.get_winner(user_choice, curb_choice)
-    return ERROR unless CHOICES.include?(user_choice)
+    return ERROR unless CHOICES.include?(user_choice) && CHOICES.include?(curb_choice)
     return TIE if user_choice == curb_choice
     case user_choice
     when ROCK
