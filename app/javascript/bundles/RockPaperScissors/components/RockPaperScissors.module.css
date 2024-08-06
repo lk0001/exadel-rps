@@ -1,23 +1,64 @@
 .container {
+  max-width: 760px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .header {
+  font: normal normal medium Montserrat;
+  font-size: 50px;
+  letter-spacing: 0px;
+  color: #36006C;
+  opacity: 1;
+  margin-bottom: 40px;
 }
 
 .description {
+  font: normal normal 300 Roboto;
+  font-size: 21px;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 0.54;
+  margin-bottom: 35px;
 }
 
 .cta {
+  font: normal normal medium Montserrat;
+  font-size: 21px;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  margin-bottom: 40px;
 }
 
 .choiceContainer {
+  display: flex;
+  flex-direction: row;
+  font: normal normal medium Montserrat;
+  font-size: 24px;
+  letter-spacing: 0px;
+  color: #36006C;
+  opacity: 1;
+  height: 100%;
+  width: 100%;
+  align-items: flex-end;
 }
 
 .choice {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.choice:hover {
+  background: #F8F8F8
 }
 
 .choiceLabel {
-}
-
-.selected {
+  margin-top: 25px;
 }
