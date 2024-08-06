@@ -15,15 +15,20 @@ class CurbService
   def retrieve_throw
     curb_throw = retrieve_curb_throw
     if curb_throw
+      log("Received result from game server: #{curb_throw}")
       curb_throw
     else
       local_throw = retrieve_local_throw
+      log("Falling back to local result: #{local_throw}")
       local_throw
     end
   end
 
   def retrieve_curb_throw
-    return if server_url.blank?
+    if server_url.blank?
+      log("No server selected", :warn)
+      return
+    end
     conn = Faraday.new(
       url: server_url,
       headers: {'Content-Type' => 'application/json'},
@@ -31,14 +36,22 @@ class CurbService
     )
     response = conn.get('/rps-stage/throw')
     json_body = JSON.parse(response.body) rescue { message: "Failed to parse" }
+    log("Response from game server. Status: #{response.status}, body: #{json_body}")
     if response.status == 200
       json_body['body']
     end
   rescue Faraday::Error => e
+    log("Failed to fetch the result. Error: #{e.message}", :error)
     nil
   end
 
   def retrieve_local_throw
     CHOICES.sample
+  end
+
+  def log(message, level = :info)
+    Rails.logger.tagged(self.class.name) do
+      Rails.logger.send(level, message)
+    end
   end
 end
