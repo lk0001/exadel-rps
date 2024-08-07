@@ -39,7 +39,7 @@ class CurbService
     end
   end
 
-  def retrieve_curb_throw
+  def retrieve_curb_response
     if server_url.blank?
       log("No server selected", :warn)
       return
@@ -49,15 +49,21 @@ class CurbService
       headers: {'Content-Type' => 'application/json'},
       request: { timeout: TIMEOUT },
     )
-    response = conn.get('/rps-stage/throw')
+    conn.get('/rps-stage/throw')
+  rescue Faraday::Error => e
+    log("Failed to fetch the result. Error: #{e.message}", :error)
+    nil
+  end
+
+  def retrieve_curb_throw
+    response = retrieve_curb_response
+    return if response.blank?
+
     json_body = JSON.parse(response.body) rescue { message: "Failed to parse" }
     log("Response from game server. Status: #{response.status}, body: #{json_body}")
     if response.status == 200 && json_body['statusCode'] == 200
       json_body['body']
     end
-  rescue Faraday::Error => e
-    log("Failed to fetch the result. Error: #{e.message}", :error)
-    nil
   end
 
   def retrieve_local_throw
