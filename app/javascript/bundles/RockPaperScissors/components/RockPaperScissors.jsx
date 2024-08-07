@@ -81,7 +81,7 @@ const Results = ({ curb_choice: curbChoice, userChoice: user_choice, winner }) =
   )
 }
 
-const RockPaperScissors = () => {
+const RockPaperScissors = ({ throwUrl }) => {
   const [selected, setSelected] = useState(null)
   const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -94,7 +94,7 @@ const RockPaperScissors = () => {
     const headers = ReactOnRails.authenticityHeaders({ 'Content-Type': 'application/json' });
 
     setIsLoading(true)
-    fetch('http://localhost:3000/games.json', { method: "POST", headers, body: JSON.stringify({ choice }) })
+    fetch(throwUrl, { method: "POST", headers, body: JSON.stringify({ choice }) })
       .then((response) => response.json())
       .then((json) => {
         setData(json)
