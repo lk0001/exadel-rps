@@ -13,7 +13,7 @@
   letter-spacing: 0px;
   color: #36006C;
   opacity: 1;
-  margin-bottom: 40px;
+  text-transform: uppercase;
 }
 
 .description {
@@ -22,7 +22,6 @@
   letter-spacing: 0px;
   color: #000000;
   opacity: 0.54;
-  margin-bottom: 35px;
 }
 
 .cta {
@@ -31,7 +30,6 @@
   letter-spacing: 0px;
   color: #000000;
   opacity: 1;
-  margin-bottom: 40px;
 }
 
 .choiceContainer {
@@ -74,6 +72,7 @@
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+  padding: 50px 70px;
 }
 
 .modalHeader {
@@ -82,5 +81,21 @@
   letter-spacing: 0px;
   color: #36006C;
   opacity: 1;
+  text-transform: uppercase;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.mb40 {
+  margin-bottom: 40px;
+}
+
+.mb60 {
+  margin-bottom: 60px;
+}
+
+.mb80 {
   margin-bottom: 80px;
 }

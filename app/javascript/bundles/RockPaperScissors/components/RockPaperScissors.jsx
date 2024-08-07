@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react"
 import PropTypes from "prop-types"
 import ReactModal from 'react-modal'
 import ReactOnRails from 'react-on-rails'
+import cx from 'classnames'
 
 import * as styles from './RockPaperScissors.module.css'
 
@@ -17,7 +18,7 @@ const CurbLogo = () => {
   )
 }
 
-const ChoiceImage = ({ value }) => {
+const ChoiceImage = ({ className, value }) => {
   let image = null;
   let imageHeight = null;
   switch (value) {
@@ -37,7 +38,7 @@ const ChoiceImage = ({ value }) => {
       image = Loading
       imageHeight = 10
   }
-  return <img src={image} height={imageHeight} />
+  return <img className={className} src={image} height={imageHeight} />
 }
 
 const Choice = ({ label, onClick, value }) => {
@@ -68,9 +69,9 @@ const Results = ({ curb_choice: curbChoice, userChoice: user_choice, winner }) =
   }
   return (
     <>
-      <div className={styles.modalHeader}>You {userVerb}!</div>
-      <div className={styles.description}>Curb with {curbChoice} {curbVerb}</div>
-      <ChoiceImage value={curbChoice} />
+      <div className={cx(styles.modalHeader, styles.mb20)}>You {userVerb}!</div>
+      <div className={cx(styles.description, styles.mb80)}>Curb with {curbChoice} {curbVerb}</div>
+      <ChoiceImage className={styles.mb60} value={curbChoice} />
     </>
   )
 }
@@ -108,11 +109,11 @@ const RockPaperScissors = () => {
   return (
     <React.Fragment>
       <div className={styles.container}>
-        <div className={styles.header}>ROCK – PAPER – SCISSORS</div>
-        <div className={styles.description}>
+        <div className={cx(styles.header, styles.mb40)}>ROCK – PAPER – SCISSORS</div>
+        <div className={cx(styles.description, styles.mb40)}>
           Rock Paper Scissors is a zero sum game that is usually played by two people using their hands and no tools. The idea is to make shapes with an outstretched hand where each shape will have a certain degree of power and will lead to an outcome.
         </div>
-        <div className={styles.cta}>SELECT YOUR BET</div>
+        <div className={cx(styles.cta, styles.mb40)}>SELECT YOUR BET</div>
         <div className={styles.choiceContainer}>
           <Choice
             label="Rock"
@@ -131,6 +132,7 @@ const RockPaperScissors = () => {
           />
         </div>
         <ReactModal
+          style={{content: { left: 0, right: 0, marginLeft: 'auto', marginRight: 'auto', width: isLoading ? 880 : 500 }}}
           styles={styles.modal}
           isOpen={!!isLoading || !!data}
           onRequestClose={hideModal}
@@ -138,7 +140,7 @@ const RockPaperScissors = () => {
           <div className={styles.modalContainer}>
             {!!isLoading && (
               <>
-                <div className={styles.modalHeader}>WAITING CURB’S CHOOSE</div>
+                <div className={cx(styles.modalHeader, styles.mb40)}>Waiting Curb’s choose</div>
                 <div className={styles.choiceContainer}>
                   <Choice
                     label="Your bet"
