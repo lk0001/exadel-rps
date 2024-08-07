@@ -5,7 +5,7 @@ describe CurbService do
 
   describe '#retrieve_local_throw' do
     it "returns a valid choice" do
-      expect(subject.retrieve_local_throw).to be_in(RockPaperScissorsService::CHOICES.keys)
+      expect(subject.retrieve_local_throw).to be_in(RockPaperScissorsService::CHOICES)
     end
   end
 

@@ -8,20 +8,21 @@ class RockPaperScissorsService
   PAPER = 'paper'.freeze
   SCISSORS = 'scissors'.freeze
 
-  CHOICES = {
+  CHOICE_VALUES = {
     ROCK => 0,
     PAPER => 1,
     SCISSORS => 2,
   }.freeze
+  CHOICES = CHOICE_VALUES.keys.freeze
 
   def self.get_winner(raw_user_choice, raw_curb_choice)
     user_choice = raw_user_choice.to_s.downcase
     curb_choice = raw_curb_choice.to_s.downcase
-    return ERROR unless CHOICES.keys.include?(user_choice) && CHOICES.keys.include?(curb_choice)
+    return ERROR unless CHOICES.include?(user_choice) && CHOICES.include?(curb_choice)
     return TIE if user_choice == curb_choice
-    if CHOICES[user_choice] == (CHOICES[curb_choice] + 1) % 3
+    if CHOICE_VALUES[user_choice] == (CHOICE_VALUES[curb_choice] + 1) % 3
       USER_WON
-    elsif CHOICES[curb_choice] == (CHOICES[user_choice] + 1) % 3
+    elsif CHOICE_VALUES[curb_choice] == (CHOICE_VALUES[user_choice] + 1) % 3
       CURB_WON
     else
       ERROR

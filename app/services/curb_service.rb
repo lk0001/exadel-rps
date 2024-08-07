@@ -67,7 +67,7 @@ class CurbService
   end
 
   def retrieve_local_throw
-    RockPaperScissorsService::CHOICES.keys.sample
+    RockPaperScissorsService::CHOICES.sample
   end
 
   def log(message, level = :info)
