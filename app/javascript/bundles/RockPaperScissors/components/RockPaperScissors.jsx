@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react"
 import PropTypes from "prop-types"
+import ReactModal from 'react-modal'
 import ReactOnRails from 'react-on-rails'
 
 import * as styles from './RockPaperScissors.module.css'
@@ -7,11 +8,42 @@ import * as styles from './RockPaperScissors.module.css'
 import Rock from './Rock.svg'
 import Paper from './Paper.svg'
 import Scissors from './Scissors.svg'
+import Loading from './loader.svg'
+import Logo from './curb_logo@2x.png'
 
-const Choice = ({ image, imageHeight, label, onClick, value }) => {
+const CurbLogo = () => {
   return (
-    <div className={styles.choice} onClick={() => onClick(value)}>
-      <img src={image} height={imageHeight} />
+    <img src={Logo} height={24} />
+  )
+}
+
+const ChoiceImage = ({ value }) => {
+  let image = null;
+  let imageHeight = null;
+  switch (value) {
+    case 'rock':
+      image = Rock
+      imageHeight = 139
+      break
+    case 'paper':
+      image = Paper
+      imageHeight = 161
+      break
+    case 'scissors':
+      image = Scissors
+      imageHeight = 160
+      break
+    default:
+      image = Loading
+      imageHeight = 10
+  }
+  return <img src={image} height={imageHeight} />
+}
+
+const Choice = ({ label, onClick, value }) => {
+  return (
+    <div className={styles.choice} onClick={() => onClick?.(value)}>
+      <ChoiceImage value={value} />
       <div className={styles.choiceLabel}>{label}</div>
     </div>
   )
@@ -40,6 +72,11 @@ const RockPaperScissors = () => {
       .catch((error) => console.error(error))
   }, [setSelected])
 
+  const hideModal = useCallback(() => {
+    setIsLoading(false)
+    setData(null)
+  })
+
   console.log('data', data)
 
   return (
@@ -52,27 +89,50 @@ const RockPaperScissors = () => {
         <div className={styles.cta}>SELECT YOUR BET</div>
         <div className={styles.choiceContainer}>
           <Choice
-            image={Rock}
-            imageHeight={139}
             label="Rock"
             onClick={handleChoice}
             value="rock"
           />
           <Choice
-            image={Paper}
-            imageHeight={161}
             label="Paper"
             onClick={handleChoice}
             value="paper"
           />
           <Choice
-            image={Scissors}
-            imageHeight={160}
             label="Scissors"
             onClick={handleChoice}
             value="scissors"
           />
         </div>
+        <ReactModal
+          styles={styles.modal}
+          isOpen={!!isLoading || !!data}
+          onRequestClose={hideModal}
+        >
+          <div className={styles.modalContainer}>
+            {!!isLoading && (
+              <>
+                <div className={styles.modalHeader}>WAITING CURB’S CHOOSE</div>
+                <div className={styles.choiceContainer}>
+                  <Choice
+                    label="Your bet"
+                    value={selected}
+                  />
+                  <Choice
+                    label={<CurbLogo />}
+                  />
+                </div>
+              </>
+            )}
+            {!!data && (
+              <>
+                <div className={styles.modalHeader}>WAITING CURB’S CHOOSE</div>
+                <div className={styles.description}>Curb with {1} {1}</div>
+                <ChoiceImage value={'rock'} />
+              </>
+            )}
+          </div>
+        </ReactModal>
       </div>
     </React.Fragment>
   )

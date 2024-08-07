@@ -53,13 +53,34 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
 }
 
-.choice:hover {
-  background: #F8F8F8
+.container .choice:hover {
+  background: #F8F8F8;
+  cursor: pointer;
 }
 
 .choiceLabel {
   margin-top: 25px;
+}
+
+.modal {
+  max-width: 880px;
+}
+
+.modalContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modalHeader {
+  font: normal normal medium Montserrat;
+  font-size: 32px;
+  letter-spacing: 0px;
+  color: #36006C;
+  opacity: 1;
+  margin-bottom: 80px;
 }
