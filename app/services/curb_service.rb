@@ -67,6 +67,7 @@ class CurbService
   end
 
   def retrieve_local_throw
+    sleep 1
     RockPaperScissorsService::CHOICES.sample
   end
 

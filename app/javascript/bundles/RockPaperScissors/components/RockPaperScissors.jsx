@@ -49,6 +49,32 @@ const Choice = ({ label, onClick, value }) => {
   )
 }
 
+const Results = ({ curb_choice: curbChoice, userChoice: user_choice, winner }) => {
+  let curbVerb = null
+  let userVerb = null
+  switch (winner) {
+    case 'tie':
+      curbVerb = 'ties'
+      userVerb = 'tied'
+      break
+    case 'user_won':
+      curbVerb = 'loses'
+      userVerb = 'won'
+      break
+    case 'curb_won':
+      curbVerb = 'wins'
+      userVerb = 'lost'
+      break
+  }
+  return (
+    <>
+      <div className={styles.modalHeader}>You {userVerb}!</div>
+      <div className={styles.description}>Curb with {curbChoice} {curbVerb}</div>
+      <ChoiceImage value={curbChoice} />
+    </>
+  )
+}
+
 const RockPaperScissors = () => {
   const [selected, setSelected] = useState(null)
   const [data, setData] = useState(null)
@@ -124,11 +150,10 @@ const RockPaperScissors = () => {
                 </div>
               </>
             )}
-            {!!data && (
+            {!!data && !!data.winner && (
               <>
-                <div className={styles.modalHeader}>WAITING CURB’S CHOOSE</div>
-                <div className={styles.description}>Curb with {1} {1}</div>
-                <ChoiceImage value={'rock'} />
+                <Results {...data} />
+                <button onClick={hideModal}>OK</button>
               </>
             )}
           </div>
