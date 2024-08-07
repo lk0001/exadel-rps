@@ -39,7 +39,11 @@ const ChoiceImage = ({ className, value }) => {
       image = Loading
       imageHeight = 10
   }
-  return <img className={className} src={image} height={imageHeight} />
+  return (
+    <div className={styles.imageBox}>
+      <img className={className} src={image} height={imageHeight} />
+    </div>
+  )
 }
 
 const Choice = ({ label, onClick, value }) => {
@@ -135,7 +139,7 @@ const RockPaperScissors = () => {
               left: 0, right: 0, marginLeft: 'auto', marginRight: 'auto',
               top: 0, bottom: 0, marginTop: 'auto', marginBottom: 'auto',
               width: isLoading ? 880 : 500,
-              height: isLoading ? 500 : 600,
+              height: isLoading ? 450 : 520,
             }
           }}
           styles={styles.modal}
@@ -151,7 +155,7 @@ const RockPaperScissors = () => {
             </button>
             {!!isLoading && (
               <>
-                <div className={cx(styles.modalHeader, styles.mb40)}>Waiting Curb’s choose</div>
+                <div className={cx(styles.modalHeader, styles.mb80)}>Waiting Curb’s choose</div>
                 <div className={styles.choiceContainer}>
                   <Choice
                     label="Your bet"

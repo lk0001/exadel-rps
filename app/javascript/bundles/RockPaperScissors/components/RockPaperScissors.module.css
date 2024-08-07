@@ -61,6 +61,12 @@
   margin-top: 25px;
 }
 
+.imageBox {
+  height: 165px;
+  display: flex;
+  align-items: center;
+}
+
 .modal {
   max-width: 880px;
 }
