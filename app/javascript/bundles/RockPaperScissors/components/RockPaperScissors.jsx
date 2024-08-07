@@ -130,7 +130,14 @@ const RockPaperScissors = () => {
           />
         </div>
         <ReactModal
-          style={{content: { left: 0, right: 0, marginLeft: 'auto', marginRight: 'auto', width: isLoading ? 880 : 500 }}}
+          style={{
+            content: {
+              left: 0, right: 0, marginLeft: 'auto', marginRight: 'auto',
+              top: 0, bottom: 0, marginTop: 'auto', marginBottom: 'auto',
+              width: isLoading ? 880 : 500,
+              height: isLoading ? 500 : 600,
+            }
+          }}
           styles={styles.modal}
           isOpen={!!isLoading || !!data}
           onRequestClose={hideModal}
