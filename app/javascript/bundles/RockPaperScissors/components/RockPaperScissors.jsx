@@ -11,6 +11,7 @@ import Paper from './Paper.svg'
 import Scissors from './Scissors.svg'
 import Loading from './loader.svg'
 import Logo from './curb_logo@2x.png'
+import CloseButton from './x@2x.png'
 
 const CurbLogo = () => {
   return (
@@ -138,6 +139,12 @@ const RockPaperScissors = () => {
           onRequestClose={hideModal}
         >
           <div className={styles.modalContainer}>
+            <button
+              className={styles.modalCloseButton}
+              onClick={hideModal}
+            >
+              <img src={CloseButton} height={20} />
+            </button>
             {!!isLoading && (
               <>
                 <div className={cx(styles.modalHeader, styles.mb40)}>Waiting Curb’s choose</div>
@@ -155,7 +162,7 @@ const RockPaperScissors = () => {
             {!!data && !!data.winner && (
               <>
                 <Results {...data} />
-                <button onClick={hideModal}>OK</button>
+                <button className={styles.button} onClick={hideModal}>Ok</button>
               </>
             )}
           </div>
