@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple Rock-Paper-Scissors website using an external API to fetch computer's choice.
 
-Things you may want to cover:
+Ruby: 3.3.4
+Rails: 7.1.3.4
 
-* Ruby version
+### Running the server
+``bundle exec rails server```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Running tests
+```bundle exec rspec```
