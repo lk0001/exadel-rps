@@ -107,7 +107,7 @@ const RockPaperScissors = () => {
   return (
     <React.Fragment>
       <div className={styles.container}>
-        <div className={cx(styles.header, styles.mb40)}>ROCK – PAPER – SCISSORS</div>
+        <div className={cx(styles.header, styles.mb40, styles.mt120)}>ROCK – PAPER – SCISSORS</div>
         <div className={cx(styles.description, styles.mb40)}>
           Rock Paper Scissors is a zero sum game that is usually played by two people using their hands and no tools. The idea is to make shapes with an outstretched hand where each shape will have a certain degree of power and will lead to an outcome.
         </div>
