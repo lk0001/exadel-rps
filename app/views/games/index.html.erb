@@ -1,18 +1,1 @@
-<% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
-  </div>
-<% end %>
-
-<%= form_with(url: games_path, method: :post) do |form| %>
-  <%= form.hidden_field :choice, value: "rock" %>
-  <%= form.submit "Rock" %>
-<% end %>
-<%= form_with(url: games_path, method: :post) do |form| %>
-  <%= form.hidden_field :choice, value: "paper" %>
-  <%= form.submit "Paper" %>
-<% end %>
-<%= form_with(url: games_path, method: :post) do |form| %>
-  <%= form.hidden_field :choice, value: "scissors" %>
-  <%= form.submit "Scissors" %>
-<% end %>
+<%= react_component("RockPaperScissors", props: { throwUrl: games_url(format: :json) }, prerender: false) %>
