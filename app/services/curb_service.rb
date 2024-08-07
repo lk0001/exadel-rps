@@ -3,12 +3,28 @@ class CurbService
   PROXY_SERVER_URL = 'https://private-anon-42e6a468b0-curbrockpaperscissors.apiary-proxy.com'.freeze
   PROD_SERVER_URL = 'https://5eddt4q9dk.execute-api.us-east-1.amazonaws.com'.freeze
 
-  TIMEOUT = 1.freeze
+  TIMEOUT = 5.freeze
 
   attr_reader :server_url
 
-  def initialize(server_url = MOCK_SERVER_URL)
-    @server_url = server_url
+  def initialize(server = :prod)
+    @server_url = case server
+    when :prod
+      log("Using production server")
+      PROD_SERVER_URL
+    when :proxy
+      log("Using proxy server")
+      PROXY_SERVER_URL
+    when :mock
+      log("Using mock server")
+      MOCK_SERVER_URL
+    when :local
+      log("Using local results")
+      nil
+    else
+      log("Using production server")
+      PROD_SERVER_URL
+    end
   end
 
   def retrieve_throw

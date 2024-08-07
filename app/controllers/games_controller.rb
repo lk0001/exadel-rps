@@ -3,8 +3,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    # TODO use external service instead of local fallack
-    curb_choice = CurbService.new(nil).retrieve_throw
+    curb_choice = CurbService.new.retrieve_throw
     user_choice = params[:choice]
 
     winner = RockPaperScissorsService.get_winner(user_choice, curb_choice)
